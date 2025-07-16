@@ -8,44 +8,44 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 17% 98%;
-    --foreground: 215 25% 27%;
+    --background: 30 15% 95%;
+    --foreground: 25 20% 25%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
+    --card-foreground: 25 20% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
+    --popover-foreground: 25 20% 25%;
 
-    --primary: 0 0% 9%;
+    --primary: 180 30% 25%;
     --primary-foreground: 0 0% 98%;
-    --primary-glow: 0 0% 20%;
+    --primary-glow: 180 35% 35%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 215 25% 27%;
+    --secondary: 185 45% 80%;
+    --secondary-foreground: 25 20% 25%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 30 15% 92%;
+    --muted-foreground: 25 15% 45%;
 
-    --accent: 43 96% 56%;
-    --accent-foreground: 215 25% 27%;
+    --accent: 175 40% 50%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 0 0% 9%;
+    --border: 30 12% 88%;
+    --input: 30 12% 88%;
+    --ring: 180 30% 25%;
 
-    /* Business gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(0 0% 9%), hsl(0 0% 20%));
-    --gradient-hero: linear-gradient(135deg, hsl(215 25% 27%), hsl(0 0% 9%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 40% 98%));
+    /* Brand palette gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(180 30% 25%), hsl(180 35% 35%));
+    --gradient-hero: linear-gradient(135deg, hsl(185 45% 80%), hsl(175 40% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(30 15% 95%));
     
     /* Professional shadows */
-    --shadow-professional: 0 4px 20px -2px hsl(0 0% 9% / 0.15);
-    --shadow-card: 0 2px 10px -2px hsl(215 25% 27% / 0.1);
-    --shadow-glow: 0 0 30px hsl(0 0% 20% / 0.3);
+    --shadow-professional: 0 4px 20px -2px hsl(180 30% 25% / 0.15);
+    --shadow-card: 0 2px 10px -2px hsl(25 20% 25% / 0.1);
+    --shadow-glow: 0 0 30px hsl(180 35% 35% / 0.3);
 
     /* Smooth transitions */
     --transition-professional: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
