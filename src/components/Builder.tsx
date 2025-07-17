@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -12,26 +12,15 @@ import {
   ChevronRight,
   ChevronLeft
 } from "lucide-react";
+import { useValueProp } from '@/context/ValuePropContext';
+import { Storyteller } from './Storyteller';
+import { Analyst } from './Analyst';
+import { Seller } from './Seller';
 import { StepOne } from "./steps/StepOne";
 import { StepTwo } from "./steps/StepTwo";
 import { StepThree } from "./steps/StepThree";
 import { StepFour } from "./steps/StepFour";
 import { StepFive } from "./steps/StepFive";
-
-interface BuilderData {
-  audience: string;
-  problem: string;
-  uniqueApproach: string;
-  technicalSkills: string[];
-  softSkills: string[];
-  successStories: string[];
-  quantifiableResults: string[];
-  testimonials: string[];
-  monetaryImpact: string;
-  timeSavings: string;
-  costReductions: string;
-  valueProposition: string;
-}
 
 const steps = [
   {
@@ -66,38 +55,9 @@ const steps = [
   },
 ];
 
-export function ValuePropositionBuilder() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [data, setData] = useState<BuilderData>({
-    audience: "",
-    problem: "",
-    uniqueApproach: "",
-    technicalSkills: [],
-    softSkills: [],
-    successStories: [],
-    quantifiableResults: [],
-    testimonials: [],
-    monetaryImpact: "",
-    timeSavings: "",
-    costReductions: "",
-    valueProposition: "",
-  });
-
-  const updateData = (newData: Partial<BuilderData>) => {
-    setData((prev) => ({ ...prev, ...newData }));
-  };
-
-  const nextStep = () => {
-    if (currentStep < steps.length) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
+export function Builder() {
+  const { state, updateData, nextStep, prevStep } = useValueProp();
+  const { data, currentStep } = state;
 
   const progress = (currentStep / steps.length) * 100;
 
@@ -170,45 +130,56 @@ export function ValuePropositionBuilder() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="container mx-auto px-6 py-12">
-        <Card className="max-w-4xl mx-auto shadow-card bg-gradient-card">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              {React.createElement(steps[currentStep - 1].icon, { className: "h-5 w-5" })}
-              {steps[currentStep - 1].title}
-            </CardTitle>
-            <CardDescription>
-              {steps[currentStep - 1].description}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {renderStep()}
-            
-            {/* Navigation Buttons */}
-            <div className="flex justify-between pt-6 border-t">
-              <Button
-                variant="outline"
-                onClick={prevStep}
-                disabled={currentStep === 1}
-                className="flex items-center gap-2"
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Previous
-              </Button>
-              
-              <Button
-                variant="professional"
-                onClick={nextStep}
-                disabled={currentStep === steps.length}
-                className="flex items-center gap-2"
-              >
-                {currentStep === steps.length ? "Complete" : "Next"}
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="grid gap-8 lg:grid-cols-12">
+          {/* Main Content */}
+          <div className="lg:col-span-8">
+            <Card className="shadow-card bg-gradient-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  {React.createElement(steps[currentStep - 1].icon, { className: "h-5 w-5" })}
+                  {steps[currentStep - 1].title}
+                </CardTitle>
+                <CardDescription>
+                  {steps[currentStep - 1].description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {renderStep()}
+                
+                {/* Navigation Buttons */}
+                <div className="flex justify-between pt-6 border-t">
+                  <Button
+                    variant="outline"
+                    onClick={prevStep}
+                    disabled={currentStep === 1}
+                    className="flex items-center gap-2"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    Previous
+                  </Button>
+                  
+                  <Button
+                    variant="professional"
+                    onClick={nextStep}
+                    disabled={currentStep === steps.length}
+                    className="flex items-center gap-2"
+                  >
+                    {currentStep === steps.length ? "Complete" : "Next"}
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Agent Sidebar */}
+          <div className="lg:col-span-4 space-y-6">
+            {currentStep <= 2 && <Storyteller />}
+            {currentStep === 3 && <Analyst />}
+            {currentStep >= 4 && <Seller />}
+          </div>
+        </div>
       </div>
     </div>
   );

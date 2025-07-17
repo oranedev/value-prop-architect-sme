@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ValuePropositionBuilder } from "@/components/ValuePropositionBuilder";
+import { Operator } from "@/components/Operator";
 import { ExamplesSection } from "@/components/ExamplesSection";
 import { 
   Target, 
@@ -19,7 +19,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState<'home' | 'builder' | 'examples'>('home');
 
   if (showBuilder || activeSection === 'builder') {
-    return <ValuePropositionBuilder />;
+    return <Operator />;
   }
 
   if (activeSection === 'examples') {
